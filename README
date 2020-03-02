@@ -1,0 +1,14 @@
+To execute tests:
+navigate to the folder "Falsk_app_2" and execute:
+
+*coverage run --source . --omit=tests/** -m pytest*
+
+Then, to check the detailed coverage report in an HTML format execute:
+
+*coverage html -i*
+
+====================================================================================================================================================
+
+Set the following environment variable(s):
+1. "JWT_SECRET_KEY"
+   export JWT_SECRET_KEY="whatevervalue"

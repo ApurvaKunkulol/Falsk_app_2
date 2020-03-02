@@ -1,0 +1,39 @@
+version: '3'
+services:
+  flask:
+    container_name: first_flask_assignment
+    image: first_flask_image
+#    build: .
+    volumes:
+      - .:/home/sagar/Apurva/Works/Falsk_app_2
+    ports:
+      - "5000:5000"
+    restart: always
+    # command
+    environment:
+      JWT_SECRET_KEY: "r@@t"
+      APP_ENV: "dev"
+      APP_PORT: 5000
+      APP_DEBUG: "false"
+      MONGODB_HOSTNAME: mongodb
+      FLASK_ENV: development
+    depends_on:
+      - mongodb
+    networks:
+      - default
+
+  mongodb:
+    image: mongo:4.2.3
+    container_name: mongodb_first_flask_app
+    ports:
+      - "27017:27017"
+    command: mongod --dbpath /data/db
+    environment:
+      MONGODB_DATA_DIR: /data/db
+      MONGODB_LOG_DIR: /dev/null
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
